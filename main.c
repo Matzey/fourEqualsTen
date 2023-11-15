@@ -91,17 +91,16 @@ double calculate_equation(double numbers[], char inputSigns[]) {
 int main() {
     double numbers[4];
     int amt_allowed_signs;
+    char signs[4] = {'+', '-', '*', '/'};
     char outsideSigns[]= {' '};
-//    char signs[] = {'(', '+', '-', '*', '/', ')'};
-//    char signs[] = {'+', '-', '*', '/'};
 
     double result = 0.0;
 
-    printf("*: %d\n", '*');
-    printf("/: %d\n", '/');
-    printf("+: %d\n", '+');
-    printf("-: %d\n", '-');
-    printf(" : %d\n", ' ');
+//    printf("*: %d\n", '*');
+//    printf("/: %d\n", '/');
+//    printf("+: %d\n", '+');
+//    printf("-: %d\n", '-');
+//    printf(" : %d\n", ' ');
 //    printf("%d\n", 47=='/');
 
     // Get Numbers //
@@ -114,11 +113,20 @@ int main() {
     //Get Allowed Signs //
     printf("How many allowed signs? ");
     scanf(" %d", &amt_allowed_signs);
-    char signs[amt_allowed_signs];
-    for(int i = 0; i < amt_allowed_signs; i++) {
-        printf("Allowed Sign %d: ", i+1);
-        scanf(" %c", &signs[i]);
+    if (amt_allowed_signs > 0) {
+        for(int i = 0; i < 4; i++) {
+            signs[i] = ' ';
+        }
+
+        for(int i = 0; i < amt_allowed_signs; i++) {
+            printf("Allowed Sign %d: ", i + 1);
+            scanf(" %c", &signs[i]);
+        }
     }
+//    printf("signs: %c \n", signs[0]);
+//    printf("signs: %c \n", signs[1]);
+//    printf("signs: %c \n", signs[2]);
+//    printf("signs: %c \n", signs[3]);
     //Get Allowed Signs //
 
     int counter = 0;
@@ -126,11 +134,11 @@ int main() {
         for(int j = 0; j < 4; j++) {
             for(int k = 0; k < 4; k++) {
                 for(int l = 0; l < 4; l++) {
-                    for(int m = 0; m < amt_allowed_signs; m++) {
-                        for(int n = 0; n < amt_allowed_signs; n++) {
-                            for(int o = 0; o < amt_allowed_signs; o++) {
-                                for(int p = 0; p < amt_allowed_signs; p++) {
-                                    for(int q = 0; q < amt_allowed_signs; q++) {
+                    for(int m = 0; m < sizeof(signs); m++) {
+                        for(int n = 0; n < sizeof(signs); n++) {
+                            for(int o = 0; o < sizeof(signs); o++) {
+                                for(int p = 0; p < sizeof(signs); p++) {
+                                    for(int q = 0; q < sizeof(signs); q++) {
                                         // so that every digit only appears once in the equation
                                         if(i != j && i != k && i != l && j != k && j != l && k != l) {
                                             // outside operators are emtpy or brackets
@@ -140,12 +148,12 @@ int main() {
 //                                                    if((signs[n] == ')' && (signs[o] != ')' && signs[p] != ')' && signs[q] != ')')) || (signs[o] == ')' && (signs[n] != ')' && signs[p] != ')' && signs[q] != ')')) || (signs[p] == ')' && (signs[n] != ')' && signs[o] != ')' && signs[q] != ')') || (signs[q] == ')' && (signs[n] != ')' && signs[o] != ')' && signs[p] != ')')))) {
                                                         double ordered_numbers[4] = {numbers[i], numbers[j], numbers[k], numbers[l]};
 //                                                char inputSigns[] = {outsideSigns[m], signs[n],  signs[o], signs[p], outsideSigns[q]};
-                                                        char inputSigns[] = {signs[n],  signs[o], signs[p]};
+                                                    char inputSigns[] = {signs[n], signs[o], signs[p]};
                                                         result = calculate_equation(ordered_numbers, inputSigns);
 
                                                         if(result == 10) {
 //                                                            printf("%c %.2lf %c %.2lf %c %.2lf %c %.2lf %c\n", inputSigns[0], ordered_numbers[0], inputSigns[1], ordered_numbers[1], inputSigns[2], ordered_numbers[2], inputSigns[3], ordered_numbers[3], inputSigns[4]);
-                                                            printf("%.2lf %c %.2lf %c %.2lf %c %.2lf\n", ordered_numbers[0], inputSigns[0], ordered_numbers[1], inputSigns[1], ordered_numbers[2], inputSigns[2], ordered_numbers[3]);
+                                                            printf("%.0lf %c %.0lf %c %.0lf %c %.0lf = 10\n", ordered_numbers[0], inputSigns[0], ordered_numbers[1], inputSigns[1], ordered_numbers[2], inputSigns[2], ordered_numbers[3]);
                                                             return 0;
                                                         }
                                                         counter++;
