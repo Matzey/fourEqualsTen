@@ -1,22 +1,22 @@
 #include <stdio.h>
 
 double add(double x, double y) {
-    printf("\t%.2lf + %.2lf = %.2lf\n", x, y, x+y);
+//    printf("\t%.2lf + %.2lf = %.2lf\n", x, y, x+y);
     return x + y;
 }
 
 double subtract(double x, double y) {
-    printf("\t%.2lf - %.2lf = %.2lf\n", x, y, x-y);
+//    printf("\t%.2lf - %.2lf = %.2lf\n", x, y, x-y);
     return x - y;
 }
 
 double divide(double x, double y) {
-    printf("\t%.2lf / %.2lf = %.2lf\n", x, y, x/y);
+//    printf("\t%.2lf / %.2lf = %.2lf\n", x, y, x/y);
     return x / y;
 }
 
 double multiply(double x, double y) {
-    printf("\t%.2lf * %.2lf = %.2lf\n", x, y, x*y);
+//    printf("\t%.2lf * %.2lf = %.2lf\n", x, y, x*y);
     return x * y;
 }
 
@@ -35,7 +35,7 @@ double calculate_equation(double numbers[], char inputSigns[]) {
     }
 
 //    printf("%c %.2lf %c %.2lf %c %.2lf %c %.2lf %c\n", help_signs[0], help_numbers[0], help_signs[1], help_numbers[1], help_signs[2], help_numbers[2], help_signs[3], help_numbers[3], help_signs[4]);
-    printf("%.2lf %c %.2lf %c %.2lf %c %.2lf\n", help_numbers[0], inputSigns[0], help_numbers[1], inputSigns[1], help_numbers[2], inputSigns[2], help_numbers[3]);
+//    printf("%.2lf %c %.2lf %c %.2lf %c %.2lf\n", help_numbers[0], inputSigns[0], help_numbers[1], inputSigns[1], help_numbers[2], inputSigns[2], help_numbers[3]);
 
     for(int i = 0; i < 3; i++) {
         if (help_signs[i] == '*') {
@@ -81,14 +81,14 @@ double calculate_equation(double numbers[], char inputSigns[]) {
         if(help_numbers[i] == 10.00) {
             return 10.00;
         }
-        if(help_numbers[i] != -99) {
-            printf("\tResult: %.2lf\n", help_numbers[i]);
-        }
+//        if(help_numbers[i] != -99) {
+//            printf("\tResult: %.2lf\n", help_numbers[i]);
+//        }
     }
     return 0.0;
 }
 
-int main() {
+void loop() {
     double numbers[4];
     int amt_allowed_signs;
     char signs[4] = {'+', '-', '*', '/'};
@@ -146,17 +146,17 @@ int main() {
                                                 //
 //                                                if ((signs[m] == '(' && (signs[n] != '(' && signs[o] != '(' && signs[p] != '(')) || (signs[n] == '(' && (signs[m] != '(' && signs[o] != '(' && signs[p] != '(')) || (signs[o] == '(' && (signs[m] != '(' && signs[n] != '(' && signs[p] != '(') || (signs[p] == '(' && (signs[m] != '(' && signs[n] != '(' && signs[o] != '(')))) {
 //                                                    if((signs[n] == ')' && (signs[o] != ')' && signs[p] != ')' && signs[q] != ')')) || (signs[o] == ')' && (signs[n] != ')' && signs[p] != ')' && signs[q] != ')')) || (signs[p] == ')' && (signs[n] != ')' && signs[o] != ')' && signs[q] != ')') || (signs[q] == ')' && (signs[n] != ')' && signs[o] != ')' && signs[p] != ')')))) {
-                                                        double ordered_numbers[4] = {numbers[i], numbers[j], numbers[k], numbers[l]};
+                                                double ordered_numbers[4] = {numbers[i], numbers[j], numbers[k], numbers[l]};
 //                                                char inputSigns[] = {outsideSigns[m], signs[n],  signs[o], signs[p], outsideSigns[q]};
-                                                    char inputSigns[] = {signs[n], signs[o], signs[p]};
-                                                        result = calculate_equation(ordered_numbers, inputSigns);
+                                                char inputSigns[] = {signs[n], signs[o], signs[p]};
+                                                result = calculate_equation(ordered_numbers, inputSigns);
 
-                                                        if(result == 10) {
+                                                if(result == 10) {
 //                                                            printf("%c %.2lf %c %.2lf %c %.2lf %c %.2lf %c\n", inputSigns[0], ordered_numbers[0], inputSigns[1], ordered_numbers[1], inputSigns[2], ordered_numbers[2], inputSigns[3], ordered_numbers[3], inputSigns[4]);
-                                                            printf("%.0lf %c %.0lf %c %.0lf %c %.0lf = 10\n", ordered_numbers[0], inputSigns[0], ordered_numbers[1], inputSigns[1], ordered_numbers[2], inputSigns[2], ordered_numbers[3]);
-                                                            return 0;
-                                                        }
-                                                        counter++;
+                                                    printf("%.0lf %c %.0lf %c %.0lf %c %.0lf = 10\n", ordered_numbers[0], inputSigns[0], ordered_numbers[1], inputSigns[1], ordered_numbers[2], inputSigns[2], ordered_numbers[3]);
+                                                    return;
+                                                }
+                                                counter++;
 //                                                    }
 //                                                }
                                             }
@@ -170,5 +170,11 @@ int main() {
             }
         }
     }
-    return 0;
+    return;
+}
+
+int main() {
+    while (1) {
+        loop();
+    }
 }
